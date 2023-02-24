@@ -6,6 +6,7 @@ import dev.jessto.desafiocstv.data.MatchesRepository
 import dev.jessto.desafiocstv.data.MatchesRepositoryImpl
 import dev.jessto.desafiocstv.data.ServiceHelpers.createOkHttpClient
 import dev.jessto.desafiocstv.data.ServiceHelpers.createService
+import dev.jessto.desafiocstv.ui.matcheDetails.MatchDetailsViewModel
 import dev.jessto.desafiocstv.ui.matchesList.MatchesViewModel
 import dev.jessto.desafiocstv.utils.mappers.MatchDTOMapper
 import dev.jessto.desafiocstv.utils.mappers.OpponentsDTOMapper
@@ -31,6 +32,7 @@ class CSTVApp : Application() {
 
         val viewModelModule = module {
             viewModel { MatchesViewModel(get()) }
+            viewModel { MatchDetailsViewModel(get()) }
         }
 
         val dataModule = module {

@@ -31,6 +31,7 @@ class MatchesListAdapter(private val context: Context, private val clickListener
                         .placeholder(R.drawable.bg_league_logo_placeholder)
                         .fallback(R.drawable.ic_league_fallback)
                         .fitCenter()
+                        .circleCrop()
                         .skipMemoryCache(true)
                         .into(ivLeagueSeries)
                 }

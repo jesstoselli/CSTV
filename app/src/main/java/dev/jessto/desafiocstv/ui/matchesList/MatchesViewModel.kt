@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dev.jessto.desafiocstv.data.MatchesRepositoryImpl
 import dev.jessto.desafiocstv.ui.model.MatchDTO
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MatchesViewModel(
@@ -36,6 +37,9 @@ class MatchesViewModel(
 
     fun getMatchesList() {
         viewModelScope.launch {
+            matchesRepositoryImpl.getMatchesList()
+
+            delay(1000L)
             _matchesList.postValue(matchesRepositoryImpl.matchesList.value)
         }
     }

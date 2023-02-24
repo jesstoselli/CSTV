@@ -17,9 +17,6 @@
             <argument
                 android:name="title"
                 android:defaultValue="League + Series" />
-            <argument
-                android:name="matchInfo"
-                android:defaultValue="@null" />
         </action>
     </fragment>
     <fragment
@@ -31,7 +28,9 @@
             android:name="title"
             app:argType="string" />
         <argument
-            android:name="matchInfo"
-            app:argType="dev.jessto.desafiocstv.ui.model.MatchDTO" />
+            android:name="selectedMatch"
+            app:argType="dev.jessto.desafiocstv.ui.model.MatchDTO"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
 </navigation>

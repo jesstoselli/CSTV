@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import dev.jessto.desafiocstv.databinding.FragmentMatchesListBinding
-import dev.jessto.desafiocstv.ui.MatchesListFragmentDirections
 import org.koin.android.ext.android.inject
 
 class MatchesListFragment : Fragment() {
