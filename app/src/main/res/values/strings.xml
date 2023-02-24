@@ -15,4 +15,5 @@
     <!--    Accessibility   -->
     <string name="content_description_team_logo">Team logo</string>
     <string name="content_description_league_logo">League logo</string>
+    <string name="content_description_player">Player picture</string>
 </resources>
