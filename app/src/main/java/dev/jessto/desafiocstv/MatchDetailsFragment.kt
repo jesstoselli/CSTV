@@ -11,7 +11,7 @@ import dev.jessto.desafiocstv.databinding.FragmentSecondBinding
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
-class MatchInfoFragment : Fragment() {
+class MatchDetailsFragment : Fragment() {
 
     private var _binding: FragmentSecondBinding? = null
 

@@ -17,9 +17,9 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="dev.jessto.desafiocstv.MatchInfoFragment"
+        android:name="dev.jessto.desafiocstv.MatchDetailsFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_match_info">
+        tools:layout="@layout/fragment_match_details">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
