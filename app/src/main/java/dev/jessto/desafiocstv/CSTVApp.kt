@@ -6,6 +6,8 @@ import dev.jessto.desafiocstv.data.MatchesRepository
 import dev.jessto.desafiocstv.data.MatchesRepositoryImpl
 import dev.jessto.desafiocstv.data.ServiceHelpers.createOkHttpClient
 import dev.jessto.desafiocstv.data.ServiceHelpers.createService
+import dev.jessto.desafiocstv.utils.MatchDTOMapper
+import dev.jessto.desafiocstv.utils.TeamDTOMapper
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -17,7 +19,8 @@ class CSTVApp : Application() {
         super.onCreate()
 
         val mappersModule = module {
-//            factory { WordEntityMapper(get()) }
+            factory { MatchDTOMapper(get()) }
+            factory { TeamDTOMapper() }
         }
 
         val viewModelModule = module {
