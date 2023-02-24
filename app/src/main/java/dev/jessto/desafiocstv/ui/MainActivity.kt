@@ -1,4 +1,4 @@
-package dev.jessto.desafiocstv
+package dev.jessto.desafiocstv.ui
 
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
@@ -9,6 +9,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import dev.jessto.desafiocstv.R
 import dev.jessto.desafiocstv.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
