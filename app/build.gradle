@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-parcelize'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -60,6 +63,28 @@ dependencies {
     // Splash Screen
     implementation "androidx.core:core-splashscreen:$splashscreen_version"
 
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$gson_version"
+//    implementation "com.squareup.retrofit2:converter-scalars:$retrofit_version"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    // KotlinX Serialization
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0-RC"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+
+    // GSON
+    implementation "com.google.code.gson:gson:$gson_version"
+
+    // Koin Core features
+    implementation "io.insert-koin:koin-core:$koin_core_version"
+    implementation "io.insert-koin:koin-android:$koin_android_version"
+
+    // Espresso Idling Resource
+    implementation "androidx.test.espresso:espresso-idling-resource:$espresso_version"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
