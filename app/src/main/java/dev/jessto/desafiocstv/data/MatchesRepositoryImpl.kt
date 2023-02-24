@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import dev.jessto.desafiocstv.data.networkmodel.MatchResponse
 import dev.jessto.desafiocstv.data.networkmodel.OpponentsResponse
 import dev.jessto.desafiocstv.ui.model.MatchDTO
-import dev.jessto.desafiocstv.ui.model.OpponentsDTO
+import dev.jessto.desafiocstv.ui.model.OpponentDTO
 import dev.jessto.desafiocstv.utils.mappers.MatchDTOMapper
 import dev.jessto.desafiocstv.utils.mappers.OpponentsDTOMapper
 import dev.jessto.desafiocstv.utils.wrapEspressoIdlingResource
@@ -23,8 +23,8 @@ class MatchesRepositoryImpl(
     val matchesList: LiveData<List<MatchDTO>>
         get() = _matchesList
 
-    private val _opponentsList = MutableLiveData<List<OpponentsDTO>>()
-    val opponentsList: LiveData<List<OpponentsDTO>>
+    private val _opponentsList = MutableLiveData<List<OpponentDTO>>()
+    val opponentsList: LiveData<List<OpponentDTO>>
         get() = _opponentsList
 
     private val _responseError = MutableLiveData<String>()

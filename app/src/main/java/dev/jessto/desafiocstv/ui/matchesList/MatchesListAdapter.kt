@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import dev.jessto.desafiocstv.R
 import dev.jessto.desafiocstv.databinding.ItemMatchBinding
+import dev.jessto.desafiocstv.databinding.ItemPlayerTeam1Binding
 import dev.jessto.desafiocstv.ui.model.MatchDTO
+import dev.jessto.desafiocstv.ui.model.PlayerDTO
 
 class MatchesListAdapter(private val context: Context, private val clickListener: MatchesListClickListener) :
     ListAdapter<MatchDTO, MatchesListAdapter.MatchesListViewHolder>(MatchesListDiffCallback) {
@@ -20,7 +22,7 @@ class MatchesListAdapter(private val context: Context, private val clickListener
             with(binding) {
                 val leagueSeries = match.leagueName + " " + match.series
 
-                tvItemMatchTime.text = match.scheduledTime.toString()
+                tvItemMatchTime.text = match.scheduledTime.toString() // TODO: Fix date presentation
                 tvItemNameTeam1.text = match.teams[0].name
                 tvItemNameTeam2.text = match.teams[1].name
                 tvLeagueSeries.text = leagueSeries

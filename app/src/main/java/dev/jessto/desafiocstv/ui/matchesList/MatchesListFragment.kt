@@ -31,7 +31,10 @@ class MatchesListFragment : Fragment() {
             viewModel.navigateToMatchDetails(match)
         })
 
-        binding.rvMatchesList.adapter = adapter
+        viewModel.matchesList.observe(viewLifecycleOwner, Observer { matchesList ->
+            adapter.submitList(matchesList)
+            binding.rvMatchesList.adapter = adapter
+        })
 
         viewModel.navigateToMatchDetails.observe(viewLifecycleOwner, Observer { match ->
             if (match != null) {
@@ -45,7 +48,6 @@ class MatchesListFragment : Fragment() {
         })
 
         return binding.root
-
     }
 
     override fun onDestroyView() {

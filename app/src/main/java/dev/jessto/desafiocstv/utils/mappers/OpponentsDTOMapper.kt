@@ -2,12 +2,12 @@ package dev.jessto.desafiocstv.utils.mappers
 
 import dev.jessto.desafiocstv.data.networkmodel.OpponentsResponse
 import dev.jessto.desafiocstv.data.networkmodel.PlayerResponse
-import dev.jessto.desafiocstv.ui.model.OpponentsDTO
+import dev.jessto.desafiocstv.ui.model.OpponentDTO
 import dev.jessto.desafiocstv.ui.model.PlayerDTO
 
-class OpponentsDTOMapper(private val playersDTOMapper: PlayersDTOMapper) : DataMapper<OpponentsResponse, OpponentsDTO>() {
-    override fun toDomain(data: OpponentsResponse): OpponentsDTO = data.let {
-        OpponentsDTO(
+class OpponentsDTOMapper(private val playersDTOMapper: PlayersDTOMapper) : DataMapper<OpponentsResponse, OpponentDTO>() {
+    override fun toDomain(data: OpponentsResponse): OpponentDTO = data.let {
+        OpponentDTO(
             id = it.id,
             teamBadgeImg = it.teamBadgeImg,
             teamName = it.teamName,

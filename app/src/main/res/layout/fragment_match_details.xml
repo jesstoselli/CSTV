@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:paddingTop="@dimen/margin_24"
     tools:background="@color/dark_blue"
-    tools:context=".ui.matcheDetails.MatchDetailsFragment">
+    tools:context=".ui.matchDetails.MatchDetailsFragment">
 
     <ImageView
         android:id="@+id/iv_logo_team1"

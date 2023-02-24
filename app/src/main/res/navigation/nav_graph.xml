@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/MatchDetailsFragment"
-        android:name="dev.jessto.desafiocstv.ui.matcheDetails.MatchDetailsFragment"
+        android:name="dev.jessto.desafiocstv.ui.matchDetails.MatchDetailsFragment"
         android:label="{title}"
         tools:layout="@layout/fragment_match_details">
         <argument

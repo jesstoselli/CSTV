@@ -1,6 +1,6 @@
 package dev.jessto.desafiocstv.ui.model
 
-data class OpponentsDTO(
+data class OpponentDTO(
     val id: Int,
     val teamBadgeImg: String? = null,
     val teamName: String,
