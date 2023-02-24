@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:cardBackgroundColor="@color/blue"
+        app:cardCornerRadius="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_match_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_match_time_live"
+                android:gravity="center"
+                android:textSize="@dimen/font_8"
+                android:textStyle="bold"
+                tools:text="AGORA" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_18">
+
+                <ImageView
+                    android:id="@+id/iv_item_logo_team1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/content_description_team_logo"
+                    app:layout_constraintBottom_toTopOf="@id/tv_item_name_team1"
+                    app:layout_constraintEnd_toStartOf="@id/tv_item_vs"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/bg_team_logo_placeholder" />
+
+                <TextView
+                    android:id="@+id/tv_item_name_team1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:textSize="@dimen/font_10"
+                    app:layout_constraintEnd_toEndOf="@id/iv_item_logo_team1"
+                    app:layout_constraintStart_toStartOf="@id/iv_item_logo_team1"
+                    app:layout_constraintTop_toBottomOf="@id/iv_item_logo_team1"
+                    tools:text="Time 1" />
+
+                <TextView
+                    android:id="@+id/tv_item_vs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_20"
+                    android:text="@string/vs"
+                    android:textColor="@color/white80"
+                    android:textSize="@dimen/font_12"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/iv_item_logo_team2"
+                    app:layout_constraintStart_toEndOf="@id/iv_item_logo_team1"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_item_logo_team2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/content_description_team_logo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tv_item_vs"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/bg_team_logo_placeholder" />
+
+                <TextView
+                    android:id="@+id/tv_item_name_team2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:textSize="@dimen/font_10"
+                    app:layout_constraintEnd_toEndOf="@id/iv_item_logo_team2"
+                    app:layout_constraintStart_toStartOf="@id/iv_item_logo_team2"
+                    app:layout_constraintTop_toBottomOf="@id/iv_item_logo_team2"
+                    tools:text="Time 2" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/white20" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="@dimen/margin_16"
+                android:paddingVertical="@dimen/margin_8">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/content_description_league_logo"
+                    tools:src="@drawable/bg_league_logo_placeholder" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_8"
+                    android:textSize="@dimen/font_8"
+                    tools:text="League + series" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
