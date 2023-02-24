@@ -1,20 +1,18 @@
 package dev.jessto.desafiocstv.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import dev.jessto.desafiocstv.R
-import dev.jessto.desafiocstv.databinding.FragmentSecondBinding
+import androidx.fragment.app.Fragment
+import dev.jessto.desafiocstv.databinding.FragmentMatchDetailsBinding
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
 class MatchDetailsFragment : Fragment() {
 
-    private var _binding: FragmentSecondBinding? = null
+    private var _binding: FragmentMatchDetailsBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -25,7 +23,7 @@ class MatchDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
+        _binding = FragmentMatchDetailsBinding.inflate(inflater, container, false)
         return binding.root
 
     }
@@ -33,9 +31,6 @@ class MatchDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
-        }
     }
 
     override fun onDestroyView() {

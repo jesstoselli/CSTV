@@ -1,5 +1,7 @@
 package dev.jessto.desafiocstv.data
 
+import dev.jessto.desafiocstv.data.networkmodel.MatchResponse
+import dev.jessto.desafiocstv.data.networkmodel.OpponentsResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -10,7 +12,7 @@ interface CSTVApiService {
     suspend fun getMatches(): Call<List<MatchResponse>>
 
     @GET("matches/{id}")
-    suspend fun getMatchById(@Path("id") id: String): Call<MatchResponse>
+    suspend fun getMatchById(@Path("id") id: String): Call<List<OpponentsResponse>>
 
 }
 

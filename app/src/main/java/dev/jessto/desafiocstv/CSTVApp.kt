@@ -36,7 +36,7 @@ class CSTVApp : Application() {
         }
 
         val networkModule = module {
-            single { createOkHttpClient(OK_HTTP) }
+            single { createOkHttpClient() }
 
             single { createService<CSTVApiService>(get(), BASE_URL) }
         }
@@ -58,6 +58,5 @@ class CSTVApp : Application() {
 
     companion object {
         private const val BASE_URL = "https://api.pandascore.co/"
-        private const val OK_HTTP = "Ok Http"
     }
 }

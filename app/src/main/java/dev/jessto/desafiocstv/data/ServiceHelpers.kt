@@ -20,7 +20,7 @@ object ServiceHelpers {
         }
     }
 
-    fun createOkHttpClient(okhttp: String): OkHttpClient {
+    fun createOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(OAuthInterceptor("Bearer", TOKEN))
             .build()
