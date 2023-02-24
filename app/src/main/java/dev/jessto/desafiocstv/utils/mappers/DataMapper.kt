@@ -1,4 +1,4 @@
-package dev.jessto.desafiocstv.utils
+package dev.jessto.desafiocstv.utils.mappers
 
 abstract class DataMapper<in R, out D> {
 

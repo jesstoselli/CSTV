@@ -1,4 +1,4 @@
-package dev.jessto.desafiocstv.ui
+package dev.jessto.desafiocstv.ui.model
 
 import java.util.*
 
@@ -16,8 +16,3 @@ data class TeamDTO(
     val badgeImg: String? = null
 )
 
-data class PlayerDTO(
-    val name: String,
-    val nickname: String,
-    val playerImg: String
-)

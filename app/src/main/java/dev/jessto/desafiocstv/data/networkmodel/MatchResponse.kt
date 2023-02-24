@@ -1,4 +1,4 @@
-package dev.jessto.desafiocstv.data.model
+package dev.jessto.desafiocstv.data.networkmodel
 
 import com.google.gson.annotations.SerializedName
 import java.util.Date
@@ -11,7 +11,7 @@ data class MatchResponse(
     @SerializedName("league_id") val leagueId: Int,
     @SerializedName("live") val live: Live,
     @SerializedName("opponents") val opponentTeams: List<OpponentTeams>,
-    @SerializedName("serie") val serie: Serie,
+    @SerializedName("serie") val series: Series,
 )
 
 data class Game(
@@ -32,10 +32,10 @@ data class Live(
 )
 
 data class OpponentTeams(
-    @SerializedName("image_url") val opponentPic: String? = null,
+    @SerializedName("image_url") val opponentImg: String? = null,
     @SerializedName("name") val name: String
 )
 
-data class Serie(
+data class Series(
     @SerializedName("name") val name: String,
 )
