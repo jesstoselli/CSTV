@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginTop="@dimen/margin_24"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/margin_24">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
@@ -24,7 +24,7 @@
                 android:id="@+id/tv_item_match_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_match_time_live"
+                android:background="@drawable/bg_match_time_scheduled"
                 android:gravity="center"
                 android:textSize="@dimen/font_8"
                 android:textStyle="bold"
@@ -39,7 +39,9 @@
                     android:id="@+id/iv_item_logo_team1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
                     android:contentDescription="@string/content_description_team_logo"
+                    android:scaleType="fitXY"
                     app:layout_constraintBottom_toTopOf="@id/tv_item_name_team1"
                     app:layout_constraintEnd_toStartOf="@id/tv_item_vs"
                     app:layout_constraintHorizontal_chainStyle="packed"
@@ -75,7 +77,9 @@
                     android:id="@+id/iv_item_logo_team2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
                     android:contentDescription="@string/content_description_team_logo"
+                    android:scaleType="fitXY"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/tv_item_vs"
                     app:layout_constraintTop_toTopOf="parent"
@@ -107,12 +111,16 @@
                 android:paddingVertical="@dimen/margin_8">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/iv_league_series"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:background="@android:color/transparent"
                     android:contentDescription="@string/content_description_league_logo"
+                    android:scaleType="fitXY"
                     tools:src="@drawable/bg_league_logo_placeholder" />
 
                 <TextView
+                    android:id="@+id/tv_league_series"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_8"

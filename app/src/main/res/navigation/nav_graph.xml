@@ -7,8 +7,8 @@
 
     <fragment
         android:id="@+id/MatchesListFragment"
-        android:name="dev.jessto.desafiocstv.ui.MatchesListFragment"
-        android:label="@string/first_fragment_label"
+        android:name="dev.jessto.desafiocstv.ui.matchesList.MatchesListFragment"
+        android:label="@string/matches_list_fragment_label"
         tools:layout="@layout/fragment_matches_list">
 
         <action
@@ -17,15 +17,21 @@
             <argument
                 android:name="title"
                 android:defaultValue="League + Series" />
+            <argument
+                android:name="matchInfo"
+                android:defaultValue="@null" />
         </action>
     </fragment>
     <fragment
         android:id="@+id/MatchDetailsFragment"
-        android:name="dev.jessto.desafiocstv.ui.MatchDetailsFragment"
+        android:name="dev.jessto.desafiocstv.ui.matcheDetails.MatchDetailsFragment"
         android:label="{title}"
         tools:layout="@layout/fragment_match_details">
         <argument
             android:name="title"
             app:argType="string" />
+        <argument
+            android:name="matchInfo"
+            app:argType="dev.jessto.desafiocstv.ui.model.MatchDTO" />
     </fragment>
 </navigation>
