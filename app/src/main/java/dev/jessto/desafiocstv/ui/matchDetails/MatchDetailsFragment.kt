@@ -1,6 +1,7 @@
 package dev.jessto.desafiocstv.ui.matchDetails
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import dev.jessto.desafiocstv.R
 import dev.jessto.desafiocstv.databinding.FragmentMatchDetailsBinding
+import dev.jessto.desafiocstv.ui.ApiStatus
 import dev.jessto.desafiocstv.ui.model.MatchDTO
 import org.koin.android.ext.android.inject
 
@@ -51,35 +53,54 @@ class MatchDetailsFragment : Fragment() {
 
         })
 
+        viewModel.apiStatus.observe(viewLifecycleOwner, Observer { apiStatus ->
+
+            when (apiStatus) {
+                ApiStatus.LOADING -> Log.i("MatchDetailsFragment", "LOADING")
+                ApiStatus.SUCCESS -> {
+                    binding.progressCircular.visibility = View.GONE
+                    binding.ccMatchInfo.visibility = View.VISIBLE
+                }
+                ApiStatus.ERROR -> {
+                    binding.progressCircular.visibility = View.GONE
+                    binding.llError.visibility = View.VISIBLE
+                }
+            }
+        })
+
         return binding.root
 
     }
 
     private fun setUpUI(match: MatchDTO) {
         with(binding) {
-            tvNameTeam1.text = match.teams[0].name
-            tvNameTeam2.text = match.teams[1].name
 
             tvMatchTime.text = match.scheduledTime.toString() // TODO: Fix date presentation
 
-            if (match.teams[0].badgeImg != null) {
-                Glide.with(requireContext())
-                    .load(match.teams[0].badgeImg)
-                    .placeholder(R.drawable.bg_team_logo_placeholder)
-                    .fallback(R.drawable.ic_badge_fallback)
-                    .fitCenter()
-                    .skipMemoryCache(true)
-                    .into(ivLogoTeam1)
-            }
+            if (match.teams != null) {
 
-            if (match.teams[1].badgeImg != null) {
-                Glide.with(requireContext())
-                    .load(match.teams[1].badgeImg)
-                    .placeholder(R.drawable.bg_team_logo_placeholder)
-                    .fallback(R.drawable.ic_badge_fallback)
-                    .fitCenter()
-                    .skipMemoryCache(true)
-                    .into(ivLogoTeam2)
+                tvNameTeam1.text = match.teams[0].name
+                tvNameTeam2.text = match.teams[1].name
+
+                if (match.teams[0].badgeImg != null) {
+                    Glide.with(requireContext())
+                        .load(match.teams[0].badgeImg)
+                        .placeholder(R.drawable.bg_team_logo_placeholder)
+                        .fallback(R.drawable.ic_badge_fallback)
+                        .fitCenter()
+                        .skipMemoryCache(true)
+                        .into(ivLogoTeam1)
+                }
+
+                if (match.teams[1].badgeImg != null) {
+                    Glide.with(requireContext())
+                        .load(match.teams[1].badgeImg)
+                        .placeholder(R.drawable.bg_team_logo_placeholder)
+                        .fallback(R.drawable.ic_badge_fallback)
+                        .fitCenter()
+                        .skipMemoryCache(true)
+                        .into(ivLogoTeam2)
+                }
             }
         }
     }

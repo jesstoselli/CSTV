@@ -16,4 +16,6 @@
     <string name="error_message_1">Sorry, something went wrong.</string>
 
     <string name="error_message_2">You could try refreshing the page by pulling down on the screen.</string>
+
+    <string name="error_message_3">Please, return to matches screen and try again.</string>
 </resources>

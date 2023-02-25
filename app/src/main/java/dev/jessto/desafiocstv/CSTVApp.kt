@@ -1,8 +1,8 @@
 package dev.jessto.desafiocstv
 
 import android.app.Application
-import dev.jessto.desafiocstv.data.MatchesProviderImpl
-import dev.jessto.desafiocstv.data.MatchesRepositoryImpl
+import dev.jessto.desafiocstv.data.provider.MatchesProviderImpl
+import dev.jessto.desafiocstv.data.repository.MatchesRepositoryImpl
 import dev.jessto.desafiocstv.ui.matchDetails.MatchDetailsViewModel
 import dev.jessto.desafiocstv.ui.matchesList.MatchesListViewModel
 import dev.jessto.desafiocstv.utils.mappers.MatchDTOMapper

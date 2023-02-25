@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dev.jessto.desafiocstv.data.MatchesProviderImpl
+import dev.jessto.desafiocstv.data.provider.MatchesProviderImpl
 import dev.jessto.desafiocstv.ui.ApiStatus
 import dev.jessto.desafiocstv.ui.model.MatchDTO
 import kotlinx.coroutines.launch

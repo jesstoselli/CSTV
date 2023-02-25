@@ -1,8 +1,10 @@
-package dev.jessto.desafiocstv.data
+package dev.jessto.desafiocstv.data.provider
 
 import android.util.Log
 import dev.jessto.desafiocstv.data.networkmodel.MatchResponse
+import dev.jessto.desafiocstv.data.repository.MatchesRepositoryImpl
 import dev.jessto.desafiocstv.ui.model.MatchDTO
+import dev.jessto.desafiocstv.ui.model.OpponentDTO
 import dev.jessto.desafiocstv.utils.mappers.MatchDTOMapper
 import dev.jessto.desafiocstv.utils.mappers.OpponentsDTOMapper
 
@@ -10,9 +12,9 @@ class MatchesProviderImpl(
     private val matchesRepositoryImpl: MatchesRepositoryImpl,
     private val matchDTOMapper: MatchDTOMapper,
     private val opponentsDTOMapper: OpponentsDTOMapper
-) {
+) : MatchesProvider {
 
-    suspend fun getMatchesList(): List<MatchDTO> {
+    override suspend fun getMatchesList(): List<MatchDTO> {
 
         val matchesList = matchesRepositoryImpl.getMatchesList()
 
@@ -28,7 +30,15 @@ class MatchesProviderImpl(
         return filteredList.map { matchResponse -> matchDTOMapper.toDomain(matchResponse) }
     }
 
-    private fun filterList(matchesList: List<MatchResponse>) : List<MatchResponse> {
+    override suspend fun getOpponentsList(matchId: String): List<OpponentDTO> {
+
+        val opponentsList = matchesRepositoryImpl.getOpponentsList(matchId)
+
+        return opponentsDTOMapper.mapList(opponentsList)
+
+    }
+
+    private fun filterList(matchesList: List<MatchResponse>): List<MatchResponse> {
         return matchesList.filterNot {
             it.opponentTeams.isEmpty() || it.opponentTeams.size < 2 || it
                 .opponentTeams[0].opponent.name.isNullOrEmpty() || it
