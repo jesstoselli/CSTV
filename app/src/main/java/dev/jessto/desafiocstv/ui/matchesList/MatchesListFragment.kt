@@ -1,6 +1,7 @@
 package dev.jessto.desafiocstv.ui.matchesList
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,11 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import dev.jessto.desafiocstv.databinding.FragmentMatchesListBinding
+import dev.jessto.desafiocstv.ui.ApiStatus
 import org.koin.android.ext.android.inject
 
 class MatchesListFragment : Fragment() {
 
-    private val viewModel: MatchesViewModel by inject()
+    private val viewModel: MatchesListViewModel by inject()
 
     private var _binding: FragmentMatchesListBinding? = null
 
@@ -34,6 +36,23 @@ class MatchesListFragment : Fragment() {
         viewModel.matchesList.observe(viewLifecycleOwner, Observer { matchesList ->
             adapter.submitList(matchesList)
             binding.rvMatchesList.adapter = adapter
+        })
+
+        viewModel.apiStatus.observe(viewLifecycleOwner, Observer { apiStatus ->
+
+            when (apiStatus) {
+                ApiStatus.LOADING -> Log.i("MatchesListFragment", "LOADING")
+                ApiStatus.SUCCESS -> {
+                    binding.progressCircular.visibility = View.GONE
+                    binding.rvMatchesList.visibility = View.VISIBLE
+                }
+                ApiStatus.ERROR -> {
+                    binding.progressCircular.visibility = View.GONE
+                    binding.ivErrorIcon.visibility = View.VISIBLE
+                    binding.tvErrorMessagePart1.visibility = View.VISIBLE
+                    binding.tvErrorMessagePart2.visibility = View.VISIBLE
+                }
+            }
         })
 
         viewModel.navigateToMatchDetails.observe(viewLifecycleOwner, Observer { match ->

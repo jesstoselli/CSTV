@@ -13,7 +13,10 @@ import dev.jessto.desafiocstv.databinding.ItemPlayerTeam1Binding
 import dev.jessto.desafiocstv.ui.model.MatchDTO
 import dev.jessto.desafiocstv.ui.model.PlayerDTO
 
-class MatchesListAdapter(private val context: Context, private val clickListener: MatchesListClickListener) :
+class MatchesListAdapter(
+    private val context: Context,
+    private val clickListener: MatchesListClickListener
+) :
     ListAdapter<MatchDTO, MatchesListAdapter.MatchesListViewHolder>(MatchesListDiffCallback) {
 
     inner class MatchesListViewHolder(private val binding: ItemMatchBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -23,8 +26,6 @@ class MatchesListAdapter(private val context: Context, private val clickListener
                 val leagueSeries = match.leagueName + " " + match.series
 
                 tvItemMatchTime.text = match.scheduledTime.toString() // TODO: Fix date presentation
-                tvItemNameTeam1.text = match.teams[0].name
-                tvItemNameTeam2.text = match.teams[1].name
                 tvLeagueSeries.text = leagueSeries
 
                 if (match.leagueImg != null) {
@@ -38,27 +39,34 @@ class MatchesListAdapter(private val context: Context, private val clickListener
                         .into(ivLeagueSeries)
                 }
 
-                if (match.teams[0].badgeImg != null) {
-                    Glide.with(context)
-                        .load(match.teams[0].badgeImg)
-                        .placeholder(R.drawable.bg_team_logo_placeholder)
-                        .fallback(R.drawable.ic_badge_fallback)
-                        .fitCenter()
-                        .skipMemoryCache(true)
-                        .into(ivItemLogoTeam1)
+                if (match.teams != null) {
+                    tvItemNameTeam1.text = match.teams[0].name
+                    tvItemNameTeam2.text = match.teams[1].name
+
+                    if (match.teams[0].badgeImg != null) {
+                        Glide.with(context)
+                            .load(match.teams[0].badgeImg)
+                            .placeholder(R.drawable.bg_team_logo_placeholder)
+                            .fallback(R.drawable.ic_badge_fallback)
+                            .fitCenter()
+                            .skipMemoryCache(true)
+                            .into(ivItemLogoTeam1)
+                    }
+
+                    if (match.teams[1].badgeImg != null) {
+                        Glide.with(context)
+                            .load(match.teams[1].badgeImg)
+                            .placeholder(R.drawable.bg_team_logo_placeholder)
+                            .fallback(R.drawable.ic_badge_fallback)
+                            .fitCenter()
+                            .skipMemoryCache(true)
+                            .into(ivItemLogoTeam2)
+                    }
                 }
 
-                if (match.teams[1].badgeImg != null) {
-                    Glide.with(context)
-                        .load(match.teams[1].badgeImg)
-                        .placeholder(R.drawable.bg_team_logo_placeholder)
-                        .fallback(R.drawable.ic_badge_fallback)
-                        .fitCenter()
-                        .skipMemoryCache(true)
-                        .into(ivItemLogoTeam2)
-                }
             }
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchesListViewHolder {
@@ -94,4 +102,5 @@ class MatchesListAdapter(private val context: Context, private val clickListener
     class MatchesListClickListener(val clickListener: (match: MatchDTO) -> Unit) {
         fun onClick(match: MatchDTO) = clickListener(match)
     }
+
 }
