@@ -6,17 +6,17 @@ import java.util.*
 
 @Parcelize
 data class MatchDTO(
-    val id: Int,
-    val leagueName: String,
-    val leagueImg: String? = null,
-    val series: String,
-    val teams: List<TeamDTO>,
-    val scheduledTime: Date
+    val id: Int?,
+    val leagueName: String?,
+    val leagueImg: String?,
+    val series: String?,
+    val teams: List<TeamDTO>? = emptyList(),
+    val scheduledTime: Date?
 ) : Parcelable
 
 @Parcelize
 data class TeamDTO(
-    val name: String,
-    val badgeImg: String? = null
+    val name: String?,
+    val badgeImg: String?
 ): Parcelable
 

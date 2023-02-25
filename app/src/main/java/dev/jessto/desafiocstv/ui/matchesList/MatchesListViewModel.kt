@@ -5,14 +5,22 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dev.jessto.desafiocstv.data.MatchesRepositoryImpl
+import dev.jessto.desafiocstv.data.MatchesProviderImpl
+import dev.jessto.desafiocstv.ui.ApiStatus
 import dev.jessto.desafiocstv.ui.model.MatchDTO
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class MatchesViewModel(
-    private val matchesRepositoryImpl: MatchesRepositoryImpl
+class MatchesListViewModel(
+    private val matchesProviderImpl: MatchesProviderImpl
 ) : ViewModel() {
+
+    private val _apiStatus = MutableLiveData<ApiStatus>()
+    val apiStatus: LiveData<ApiStatus>
+        get() = _apiStatus
+
+    private val _responseErrorMessage = MutableLiveData<String>()
+    val responseErrorMessage: LiveData<String>
+        get() = _responseErrorMessage
 
     private val _matchesList = MutableLiveData<List<MatchDTO>>()
     val matchesList: LiveData<List<MatchDTO>>
@@ -36,11 +44,18 @@ class MatchesViewModel(
     }
 
     fun getMatchesList() {
-        viewModelScope.launch {
-            matchesRepositoryImpl.getMatchesList()
+        _apiStatus.value = ApiStatus.LOADING
 
-            delay(1000L)
-            _matchesList.postValue(matchesRepositoryImpl.matchesList.value)
+        viewModelScope.launch {
+            val listOfMatches = matchesProviderImpl.getMatchesList()
+
+            if (listOfMatches.isEmpty()) {
+                _apiStatus.value = ApiStatus.ERROR
+            }
+
+            _matchesList.postValue(listOfMatches)
+
+            _apiStatus.value = ApiStatus.SUCCESS
         }
     }
 

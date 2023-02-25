@@ -17,14 +17,13 @@ class MatchDTOMapper(private val teamDTOMapper: TeamDTOMapper) : DataMapper<Matc
             scheduledTime = it.beginAt
         )
     }
-
 }
 
 class TeamDTOMapper : DataMapper<OpponentTeams, TeamDTO>() {
     override fun toDomain(data: OpponentTeams): TeamDTO = data.let {
         TeamDTO(
-            name = it.name,
-            badgeImg = it.opponentImg
+            name = it.opponent.name,
+            badgeImg = it.opponent.opponentImg
         )
     }
 }

@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import java.util.Date
 
 data class MatchResponse(
-    @SerializedName("begin_at") val beginAt: Date,
+    @SerializedName("begin_at") val beginAt: Date?,
     @SerializedName("games") val games: List<Game>,
     @SerializedName("id") val id: Int,
     @SerializedName("league") val league: League,
@@ -23,17 +23,21 @@ data class Game(
 
 data class League(
     @SerializedName("id") val id: Int,
-    @SerializedName("image_url") val imageUrl: String? = null,
+    @SerializedName("image_url") val imageUrl: String?,
     @SerializedName("name") val name: String
 )
 
 data class Live(
-    @SerializedName("opens_at") val opensAt: Date? = null
+    @SerializedName("opens_at") val opensAt: Date?
 )
 
 data class OpponentTeams(
-    @SerializedName("image_url") val opponentImg: String? = null,
-    @SerializedName("name") val name: String
+    @SerializedName("opponent") val opponent: Opponent,
+)
+
+data class Opponent(
+    @SerializedName("image_url") val opponentImg: String?,
+    @SerializedName("name") val name: String?
 )
 
 data class Series(

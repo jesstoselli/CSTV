@@ -1,13 +1,10 @@
 package dev.jessto.desafiocstv
 
 import android.app.Application
-import dev.jessto.desafiocstv.data.CSTVApiService
-import dev.jessto.desafiocstv.data.MatchesRepository
+import dev.jessto.desafiocstv.data.MatchesProviderImpl
 import dev.jessto.desafiocstv.data.MatchesRepositoryImpl
-import dev.jessto.desafiocstv.data.ServiceHelpers.createOkHttpClient
-import dev.jessto.desafiocstv.data.ServiceHelpers.createService
 import dev.jessto.desafiocstv.ui.matchDetails.MatchDetailsViewModel
-import dev.jessto.desafiocstv.ui.matchesList.MatchesViewModel
+import dev.jessto.desafiocstv.ui.matchesList.MatchesListViewModel
 import dev.jessto.desafiocstv.utils.mappers.MatchDTOMapper
 import dev.jessto.desafiocstv.utils.mappers.OpponentsDTOMapper
 import dev.jessto.desafiocstv.utils.mappers.PlayersDTOMapper
@@ -31,20 +28,14 @@ class CSTVApp : Application() {
         }
 
         val viewModelModule = module {
-            viewModel { MatchesViewModel(get()) }
+            viewModel { MatchesListViewModel(get()) }
             viewModel { MatchDetailsViewModel(get()) }
         }
 
         val dataModule = module {
-            single<MatchesRepository> { MatchesRepositoryImpl(get(), get(), get()) }
+            single { MatchesProviderImpl(get(), get(), get()) }
+            single { MatchesRepositoryImpl() }
         }
-
-        val networkModule = module {
-            single { createOkHttpClient() }
-
-            single { createService<CSTVApiService>(get(), BASE_URL) }
-        }
-
 
         startKoin {
             androidLogger()
@@ -52,15 +43,10 @@ class CSTVApp : Application() {
             modules(
                 listOf(
                     mappersModule,
-                    viewModelModule,
                     dataModule,
-                    networkModule
+                    viewModelModule
                 )
             )
         }
-    }
-
-    companion object {
-        private const val BASE_URL = "https://api.pandascore.co/"
     }
 }
