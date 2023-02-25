@@ -2,7 +2,7 @@
     <string name="app_name">DesafioCSTV</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="matches_list_fragment_label">Matches List Fragment</string>
+    <string name="matches_list_fragment_label">Partidas</string>
     <string name="match_details_fragment_label">Match Details Fragment</string>
 
     <string name="vs">VS</string>
@@ -11,4 +11,9 @@
     <string name="content_description_team_logo">Team logo</string>
     <string name="content_description_league_logo">League logo</string>
     <string name="content_description_player">Player picture</string>
+    <string name="content_description_error">Error icon</string>
+
+    <string name="error_message_1">Sorry, something went wrong.</string>
+
+    <string name="error_message_2">You could try refreshing the page by pulling down on the screen.</string>
 </resources>
