@@ -43,7 +43,7 @@ class MatchesRepositoryImpl : MatchesRepository {
 
         try {
             return if (response.code() == 200 && response.body() != null) {
-                responseBody
+                responseBody.opponents
             } else {
                 _responseError.value = response.message()
 

@@ -2,7 +2,7 @@ package dev.jessto.desafiocstv.data
 
 import dev.jessto.desafiocstv.data.ServiceHelpers.createOkHttpClient
 import dev.jessto.desafiocstv.data.networkmodel.MatchResponse
-import dev.jessto.desafiocstv.data.networkmodel.OpponentsResponse
+import dev.jessto.desafiocstv.data.networkmodel.OpponentsData
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -15,7 +15,7 @@ interface CSTVApiService {
     suspend fun getMatches(): Response<MutableList<MatchResponse>>
 
     @GET("matches/{id}/opponents")
-    suspend fun getOpponentsListByMatchId(@Path("id") id: String): Response<List<OpponentsResponse>>
+    suspend fun getOpponentsListByMatchId(@Path("id") id: String): Response<OpponentsData>
 
 }
 
