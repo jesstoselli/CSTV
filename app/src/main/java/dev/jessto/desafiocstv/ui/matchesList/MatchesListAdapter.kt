@@ -9,9 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import dev.jessto.desafiocstv.R
 import dev.jessto.desafiocstv.databinding.ItemMatchBinding
-import dev.jessto.desafiocstv.databinding.ItemPlayerTeam1Binding
 import dev.jessto.desafiocstv.ui.model.MatchDTO
-import dev.jessto.desafiocstv.ui.model.PlayerDTO
 
 class MatchesListAdapter(
     private val context: Context,

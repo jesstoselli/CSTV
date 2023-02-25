@@ -1,6 +1,5 @@
 package dev.jessto.desafiocstv.data.provider
 
-import android.util.Log
 import dev.jessto.desafiocstv.data.networkmodel.MatchResponse
 import dev.jessto.desafiocstv.data.repository.MatchesRepositoryImpl
 import dev.jessto.desafiocstv.ui.model.MatchDTO
@@ -23,9 +22,6 @@ class MatchesProviderImpl(
         }
 
         val filteredList = filterList(matchesList)
-
-        Log.i("MatchesProviderImpl", filteredList.toString())
-        Log.i("MatchesProviderImpl", filteredList.size.toString())
 
         return filteredList.map { matchResponse -> matchDTOMapper.toDomain(matchResponse) }
     }

@@ -41,15 +41,15 @@ class MatchDetailsFragment : Fragment() {
             setUpUI(match)
         }
 
-        val team1Adapter = PlayersListAdapter(requireContext())
-        val team2Adapter = PlayersListAdapter(requireContext())
+        val teamLeftAdapter = PlayersLeftListAdapter(requireContext())
+        val teamRightAdapter = PlayersRightListAdapter(requireContext())
 
         viewModel.opponentsList.observe(viewLifecycleOwner, Observer { opponentsList ->
-            team1Adapter.submitList(opponentsList[0].players)
-            team2Adapter.submitList(opponentsList[1].players)
+            teamLeftAdapter.submitList(opponentsList[0].players)
+            teamRightAdapter.submitList(opponentsList[1].players)
 
-            binding.rvTeam1.adapter = team1Adapter
-            binding.rvTeam2.adapter = team2Adapter
+            binding.rvTeam1.adapter = teamLeftAdapter
+            binding.rvTeam2.adapter = teamRightAdapter
 
         })
 
