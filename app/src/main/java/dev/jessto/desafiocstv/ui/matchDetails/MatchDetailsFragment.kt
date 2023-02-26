@@ -13,6 +13,7 @@ import dev.jessto.desafiocstv.R
 import dev.jessto.desafiocstv.databinding.FragmentMatchDetailsBinding
 import dev.jessto.desafiocstv.ui.ApiStatus
 import dev.jessto.desafiocstv.ui.model.MatchDTO
+import dev.jessto.desafiocstv.utils.mappers.formatDate
 import org.koin.android.ext.android.inject
 
 class MatchDetailsFragment : Fragment() {
@@ -75,7 +76,7 @@ class MatchDetailsFragment : Fragment() {
     private fun setUpUI(match: MatchDTO) {
         with(binding) {
 
-            tvMatchTime.text = match.scheduledTime.toString() // TODO: Fix date presentation
+            tvMatchTime.text = formatDate(match.scheduledTime!!)
 
             if (match.teams != null) {
 
