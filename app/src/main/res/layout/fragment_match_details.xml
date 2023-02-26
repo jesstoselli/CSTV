@@ -62,8 +62,8 @@
 
         <ImageView
             android:id="@+id/iv_logo_team1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:contentDescription="@string/content_description_team_logo"
             app:layout_constraintBottom_toTopOf="@id/tv_name_team1"
             app:layout_constraintEnd_toStartOf="@id/tv_vs"
@@ -98,8 +98,8 @@
 
         <ImageView
             android:id="@+id/iv_logo_team2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:contentDescription="@string/content_description_team_logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_vs"

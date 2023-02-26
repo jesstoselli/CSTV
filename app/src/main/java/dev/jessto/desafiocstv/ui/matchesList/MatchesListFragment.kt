@@ -48,23 +48,28 @@ class MatchesListFragment : Fragment() {
                 }
                 ApiStatus.ERROR -> {
                     binding.progressCircular.visibility = View.GONE
-                    binding.ivErrorIcon.visibility = View.VISIBLE
-                    binding.tvErrorMessagePart1.visibility = View.VISIBLE
-                    binding.tvErrorMessagePart2.visibility = View.VISIBLE
+                    binding.llError.visibility = View.VISIBLE
                 }
             }
         })
 
         viewModel.navigateToMatchDetails.observe(viewLifecycleOwner, Observer { match ->
             if (match != null) {
-                val title = match.leagueName + " " + match.series
+                val title = if (match.series.isNullOrEmpty()) match.leagueName else match.leagueName + " - " + match.series
 
-                val action = MatchesListFragmentDirections.actionMatchesListFragmentToMatchDetailsFragment(title, match)
+                val action = MatchesListFragmentDirections.actionMatchesListFragmentToMatchDetailsFragment(title!!, match)
                 findNavController().navigate(action)
 
                 viewModel.returnFromMatchDetails()
             }
         })
+
+        binding.swipeContainer.setOnRefreshListener {
+            if (viewModel.apiStatus.value == ApiStatus.LOADING || binding.swipeContainer.isRefreshing) {
+                binding.swipeContainer.isRefreshing = false
+            }
+            viewModel.getMatchesList()
+        }
 
         return binding.root
     }

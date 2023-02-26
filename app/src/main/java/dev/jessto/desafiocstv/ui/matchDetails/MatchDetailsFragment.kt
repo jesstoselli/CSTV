@@ -82,25 +82,21 @@ class MatchDetailsFragment : Fragment() {
                 tvNameTeam1.text = match.teams[0].name
                 tvNameTeam2.text = match.teams[1].name
 
-                if (match.teams[0].badgeImg != null) {
-                    Glide.with(requireContext())
-                        .load(match.teams[0].badgeImg)
-                        .placeholder(R.drawable.bg_team_logo_placeholder)
-                        .fallback(R.drawable.ic_badge_fallback)
-                        .fitCenter()
-                        .skipMemoryCache(true)
-                        .into(ivLogoTeam1)
-                }
+                Glide.with(requireContext())
+                    .load(match.teams[0].badgeImg)
+                    .placeholder(R.drawable.bg_team_logo_placeholder)
+                    .fallback(R.drawable.ic_badge_fallback)
+                    .fitCenter()
+                    .skipMemoryCache(true)
+                    .into(ivLogoTeam1)
 
-                if (match.teams[1].badgeImg != null) {
-                    Glide.with(requireContext())
-                        .load(match.teams[1].badgeImg)
-                        .placeholder(R.drawable.bg_team_logo_placeholder)
-                        .fallback(R.drawable.ic_badge_fallback)
-                        .fitCenter()
-                        .skipMemoryCache(true)
-                        .into(ivLogoTeam2)
-                }
+                Glide.with(requireContext())
+                    .load(match.teams[1].badgeImg)
+                    .placeholder(R.drawable.bg_team_logo_placeholder)
+                    .fallback(R.drawable.ic_badge_fallback)
+                    .fitCenter()
+                    .skipMemoryCache(true)
+                    .into(ivLogoTeam2)
             }
         }
     }

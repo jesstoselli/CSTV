@@ -21,45 +21,37 @@ class MatchesListAdapter(
 
         fun bind(match: MatchDTO) {
             with(binding) {
-                val leagueSeries = match.leagueName + " " + match.series
+                val leagueSeries = if (match.series.isNullOrEmpty()) match.leagueName else match.leagueName + " - " + match.series
 
                 tvItemMatchTime.text = match.scheduledTime.toString() // TODO: Fix date presentation
                 tvLeagueSeries.text = leagueSeries
 
-                if (match.leagueImg != null) {
-                    Glide.with(context)
-                        .load(match.leagueImg)
-                        .placeholder(R.drawable.bg_league_logo_placeholder)
-                        .fallback(R.drawable.ic_league_fallback)
-                        .fitCenter()
-                        .circleCrop()
-                        .skipMemoryCache(true)
-                        .into(ivLeagueSeries)
-                }
+                Glide.with(context)
+                    .load(match.leagueImg)
+                    .placeholder(R.drawable.bg_league_logo_placeholder)
+                    .fallback(R.drawable.ic_league_fallback)
+                    .fitCenter()
+                    .circleCrop()
+                    .skipMemoryCache(true)
+                    .into(ivLeagueSeries)
 
                 if (match.teams != null) {
                     tvItemNameTeam1.text = match.teams[0].name
                     tvItemNameTeam2.text = match.teams[1].name
 
-                    if (match.teams[0].badgeImg != null) {
-                        Glide.with(context)
-                            .load(match.teams[0].badgeImg)
-                            .placeholder(R.drawable.bg_team_logo_placeholder)
-                            .fallback(R.drawable.ic_badge_fallback)
-                            .fitCenter()
-                            .skipMemoryCache(true)
-                            .into(ivItemLogoTeam1)
-                    }
+                    Glide.with(context)
+                        .load(match.teams[0].badgeImg)
+                        .fallback(R.drawable.ic_badge_fallback)
+                        .fitCenter()
+                        .skipMemoryCache(true)
+                        .into(ivItemLogoTeam1)
 
-                    if (match.teams[1].badgeImg != null) {
-                        Glide.with(context)
-                            .load(match.teams[1].badgeImg)
-                            .placeholder(R.drawable.bg_team_logo_placeholder)
-                            .fallback(R.drawable.ic_badge_fallback)
-                            .fitCenter()
-                            .skipMemoryCache(true)
-                            .into(ivItemLogoTeam2)
-                    }
+                    Glide.with(context)
+                        .load(match.teams[1].badgeImg)
+                        .fallback(R.drawable.ic_badge_fallback)
+                        .fitCenter()
+                        .skipMemoryCache(true)
+                        .into(ivItemLogoTeam2)
                 }
 
             }
@@ -67,7 +59,7 @@ class MatchesListAdapter(
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchesListViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchesListAdapter.MatchesListViewHolder {
         return MatchesListViewHolder(
             ItemMatchBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -77,7 +69,7 @@ class MatchesListAdapter(
         )
     }
 
-    override fun onBindViewHolder(holder: MatchesListViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MatchesListAdapter.MatchesListViewHolder, position: Int) {
         val matchItem = getItem(position)
         holder.itemView.setOnClickListener {
             clickListener.onClick(matchItem)

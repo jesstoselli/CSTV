@@ -33,18 +33,20 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/margin_18">
+                android:paddingTop="@dimen/margin_18">
 
                 <ImageView
                     android:id="@+id/iv_item_logo_team1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:adjustViewBounds="true"
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/content_description_team_logo"
-                    android:scaleType="fitXY"
+                    android:scaleType="centerInside"
                     app:layout_constraintBottom_toTopOf="@id/tv_item_name_team1"
                     app:layout_constraintEnd_toStartOf="@id/tv_item_vs"
                     app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintVertical_chainStyle="spread"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:src="@drawable/bg_team_logo_placeholder" />
@@ -55,9 +57,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_10"
                     android:textSize="@dimen/font_10"
+                    android:layout_marginBottom="@dimen/margin_18"
+                    app:layout_constraintTop_toBottomOf="@id/iv_item_logo_team1"
                     app:layout_constraintEnd_toEndOf="@id/iv_item_logo_team1"
                     app:layout_constraintStart_toStartOf="@id/iv_item_logo_team1"
-                    app:layout_constraintTop_toBottomOf="@id/iv_item_logo_team1"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     tools:text="Time 1" />
 
                 <TextView
@@ -75,25 +79,30 @@
 
                 <ImageView
                     android:id="@+id/iv_item_logo_team2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:adjustViewBounds="true"
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/content_description_team_logo"
-                    android:scaleType="fitXY"
+                    android:scaleType="centerInside"
+                    app:layout_constraintBottom_toTopOf="@id/tv_item_name_team2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/tv_item_vs"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="spread"
                     tools:src="@drawable/bg_team_logo_placeholder" />
 
                 <TextView
                     android:id="@+id/tv_item_name_team2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_18"
                     android:layout_marginTop="@dimen/margin_10"
                     android:textSize="@dimen/font_10"
+                    app:layout_constraintTop_toBottomOf="@id/iv_item_logo_team2"
                     app:layout_constraintEnd_toEndOf="@id/iv_item_logo_team2"
                     app:layout_constraintStart_toStartOf="@id/iv_item_logo_team2"
-                    app:layout_constraintTop_toBottomOf="@id/iv_item_logo_team2"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     tools:text="Time 2" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -33,7 +33,7 @@ class PlayersRightListAdapter(private val context: Context) : ListAdapter<Player
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayersRightListViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayersRightListAdapter.PlayersRightListViewHolder {
         return PlayersRightListViewHolder(
             ItemPlayerTeamRightBinding.inflate(
                 LayoutInflater.from(parent.context),

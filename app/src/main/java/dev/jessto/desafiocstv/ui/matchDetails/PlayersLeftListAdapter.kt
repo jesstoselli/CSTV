@@ -25,19 +25,17 @@ class PlayersLeftListAdapter(private val context: Context) : ListAdapter<PlayerD
                 tvPlayerName.text = player.name
                 tvNickname.text = player.nickname
 
-                if (player.playerImg != null) {
-                    Glide.with(context)
-                        .load(player.playerImg)
-                        .fallback(R.drawable.ic_player_fallback)
-                        .fitCenter() // TODO: Round picture corners with Glide
-                        .skipMemoryCache(true)
-                        .into(ivPlayerPicture)
-                }
+                Glide.with(context)
+                    .load(player.playerImg)
+                    .fallback(R.drawable.ic_player_fallback)
+                    .fitCenter() // TODO: Round picture corners with Glide
+                    .skipMemoryCache(true)
+                    .into(ivPlayerPicture)
             }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayersLeftListViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayersLeftListAdapter.PlayersLeftListViewHolder {
         return PlayersLeftListViewHolder(
             ItemPlayerTeamLeftBinding.inflate(
                 LayoutInflater.from(parent.context),
