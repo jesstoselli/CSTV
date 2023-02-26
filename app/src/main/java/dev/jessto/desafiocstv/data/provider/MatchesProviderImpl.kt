@@ -15,9 +15,9 @@ class MatchesProviderImpl(
     private val opponentsDTOMapper: OpponentsDTOMapper
 ) : MatchesProvider {
 
-    override suspend fun getMatchesList(): List<MatchDTO> {
+    override suspend fun getMatchesList(number: Int): List<MatchDTO> {
 
-        val matchesList = matchesRepositoryImpl.getMatchesList()
+        val matchesList = matchesRepositoryImpl.getMatchesList(number)
 
         if (matchesList.isEmpty()) {
             return emptyList()

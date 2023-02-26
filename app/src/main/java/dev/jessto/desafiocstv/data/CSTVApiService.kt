@@ -8,11 +8,13 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface CSTVApiService {
 
     @GET("matches")
-    suspend fun getMatches(): Response<MutableList<MatchResponse>>
+    suspend fun getMatches(@Query("page[size]") size: Int, @Query("page[number]") number: Int):
+            Response<MutableList<MatchResponse>>
 
     @GET("matches/{id}/opponents")
     suspend fun getOpponentsListByMatchId(@Path("id") id: String): Response<OpponentsData>

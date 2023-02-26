@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import dev.jessto.desafiocstv.data.provider.MatchesProviderImpl
 import dev.jessto.desafiocstv.ui.ApiStatus
 import dev.jessto.desafiocstv.ui.model.MatchDTO
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MatchesListViewModel(
@@ -30,6 +31,8 @@ class MatchesListViewModel(
     val navigateToMatchDetails: LiveData<MatchDTO?>
         get() = _navigateToMatchDetails
 
+    private var pageNumber: Int = 1
+
     init {
         Log.d(TAG, "Loaded properly")
         getMatchesList()
@@ -46,8 +49,11 @@ class MatchesListViewModel(
     fun getMatchesList() {
         _apiStatus.value = ApiStatus.LOADING
 
+        trackPageNumber()
+
         viewModelScope.launch {
-            val listOfMatches = matchesProviderImpl.getMatchesList()
+            Log.i(TAG, pageNumber.toString())
+            val listOfMatches = matchesProviderImpl.getMatchesList(pageNumber)
 
             if (listOfMatches.isEmpty()) {
                 _apiStatus.value = ApiStatus.ERROR
@@ -55,8 +61,18 @@ class MatchesListViewModel(
 
             _matchesList.postValue(listOfMatches)
 
+            delay(500L)
+
             _apiStatus.value = ApiStatus.SUCCESS
         }
+    }
+
+    private fun trackPageNumber() {
+        pageNumber += 1
+    }
+
+    fun resetPageNumber() {
+        pageNumber = 1
     }
 
     companion object {

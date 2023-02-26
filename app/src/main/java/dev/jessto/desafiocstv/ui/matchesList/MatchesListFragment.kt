@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import dev.jessto.desafiocstv.databinding.FragmentMatchesListBinding
 import dev.jessto.desafiocstv.ui.ApiStatus
 import org.koin.android.ext.android.inject
@@ -17,6 +20,8 @@ class MatchesListFragment : Fragment() {
     private val viewModel: MatchesListViewModel by inject()
 
     private var _binding: FragmentMatchesListBinding? = null
+
+    private lateinit var matchesListAdapter: MatchesListAdapter
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -29,13 +34,13 @@ class MatchesListFragment : Fragment() {
 
         _binding = FragmentMatchesListBinding.inflate(inflater, container, false)
 
-        val adapter = MatchesListAdapter(requireContext(), MatchesListAdapter.MatchesListClickListener { match ->
+        matchesListAdapter = MatchesListAdapter(requireContext(), MatchesListAdapter.MatchesListClickListener { match ->
             viewModel.navigateToMatchDetails(match)
         })
 
         viewModel.matchesList.observe(viewLifecycleOwner, Observer { matchesList ->
-            adapter.submitList(matchesList)
-            binding.rvMatchesList.adapter = adapter
+            matchesListAdapter.submitList(matchesList)
+            binding.rvMatchesList.adapter = matchesListAdapter
         })
 
         viewModel.apiStatus.observe(viewLifecycleOwner, Observer { apiStatus ->
@@ -68,8 +73,24 @@ class MatchesListFragment : Fragment() {
             if (viewModel.apiStatus.value == ApiStatus.LOADING || binding.swipeContainer.isRefreshing) {
                 binding.swipeContainer.isRefreshing = false
             }
+            viewModel.resetPageNumber()
             viewModel.getMatchesList()
         }
+
+        binding.rvMatchesList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if(viewModel.apiStatus.value == ApiStatus.LOADING) return
+
+                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+
+                val lastVisibleItem = layoutManager.findLastVisibleItemPosition()
+
+                if (lastVisibleItem + 1 == matchesListAdapter.itemCount) {
+                    viewModel.getMatchesList()
+                }
+            }
+        })
 
         return binding.root
     }

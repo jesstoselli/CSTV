@@ -14,8 +14,8 @@ class MatchesRepositoryImpl : MatchesRepository {
     val responseError: LiveData<String>
         get() = _responseError
 
-    override suspend fun getMatchesList(): List<MatchResponse> {
-        val response = cstvApiService.getMatches()
+    override suspend fun getMatchesList(number: Int): List<MatchResponse> {
+        val response = cstvApiService.getMatches(20, number)
 
         val responseBody = response.body()!!
 

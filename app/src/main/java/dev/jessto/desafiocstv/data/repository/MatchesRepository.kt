@@ -5,7 +5,7 @@ import dev.jessto.desafiocstv.data.networkmodel.OpponentsResponse
 
 interface MatchesRepository {
 
-    suspend fun getMatchesList(): List<MatchResponse>
+    suspend fun getMatchesList(number: Int): List<MatchResponse>
 
     suspend fun getOpponentsList(matchId: String): List<OpponentsResponse>
 }
