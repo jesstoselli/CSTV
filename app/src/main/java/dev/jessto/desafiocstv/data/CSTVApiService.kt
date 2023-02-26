@@ -13,10 +13,12 @@ import retrofit2.http.Query
 interface CSTVApiService {
 
     @GET("matches")
-    suspend fun getMatches(@Query("sort") sort: String,
-                           @Query("range[begin_at]") range: String,
-                           @Query("page[size]") size: Int,
-                           @Query("filter[videogame]") videogame: String,):
+    suspend fun getMatches(
+        @Query("sort") sort: String,
+        @Query("range[begin_at]") range: String,
+        @Query("page[size]") size: Int,
+        @Query("filter[videogame]") videogame: String,
+    ):
             Response<MutableList<MatchResponse>>
 
     @GET("matches/{id}/opponents")

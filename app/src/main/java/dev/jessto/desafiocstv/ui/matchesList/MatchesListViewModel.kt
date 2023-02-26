@@ -1,8 +1,6 @@
 package dev.jessto.desafiocstv.ui.matchesList
 
-import android.os.Build
 import android.util.Log
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,10 +18,6 @@ class MatchesListViewModel(
     private val _apiStatus = MutableLiveData<ApiStatus>()
     val apiStatus: LiveData<ApiStatus>
         get() = _apiStatus
-
-    private val _responseErrorMessage = MutableLiveData<String>()
-    val responseErrorMessage: LiveData<String>
-        get() = _responseErrorMessage
 
     private val _matchesList = MutableLiveData<List<MatchDTO>>()
     val matchesList: LiveData<List<MatchDTO>>

@@ -28,7 +28,7 @@ class PlayersLeftListAdapter(private val context: Context) : ListAdapter<PlayerD
                 Glide.with(context)
                     .load(player.playerImg)
                     .fallback(R.drawable.ic_player_fallback)
-                    .fitCenter() // TODO: Round picture corners with Glide
+                    .fitCenter()
                     .skipMemoryCache(true)
                     .into(ivPlayerPicture)
             }

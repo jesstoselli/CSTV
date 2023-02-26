@@ -2,28 +2,19 @@ package dev.jessto.desafiocstv.utils.mappers
 
 import android.icu.text.DateFormat
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import java.util.*
 
-fun getYesterday(): Date {
-    val today = LocalDateTime.now()
-
-    return Date.from(today.minusDays(-1)
-        .atZone(ZoneId.systemDefault())
-        .toInstant())
-}
-
 fun String.toFirstCapitalLetters(): String {
     return this.substring(0, 1).uppercase(Locale.getDefault()) + this.substring(1)
 }
 
-fun formatDate(date: Date) : String {
+fun formatDate(date: Date): String {
     val currentDate = date.toInstant()
         .atZone(ZoneId.systemDefault())
-        .toLocalDateTime();
+        .toLocalDateTime()
 
     var datePattern = ""
     val now = LocalDate.now().atStartOfDay()

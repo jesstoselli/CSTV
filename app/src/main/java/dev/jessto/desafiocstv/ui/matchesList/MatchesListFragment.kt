@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dev.jessto.desafiocstv.databinding.FragmentMatchesListBinding
@@ -80,7 +79,7 @@ class MatchesListFragment : Fragment() {
         binding.rvMatchesList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                if(viewModel.apiStatus.value == ApiStatus.LOADING) return
+                if (viewModel.apiStatus.value == ApiStatus.LOADING) return
 
                 val layoutManager = recyclerView.layoutManager as LinearLayoutManager
 

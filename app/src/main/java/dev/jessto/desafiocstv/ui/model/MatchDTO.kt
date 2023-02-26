@@ -19,4 +19,4 @@ data class MatchDTO(
 data class TeamDTO(
     val name: String?,
     val badgeImg: String?
-): Parcelable
+) : Parcelable

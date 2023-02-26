@@ -1,8 +1,7 @@
 package dev.jessto.desafiocstv.data.networkmodel
 
 import com.google.gson.annotations.SerializedName
-import java.time.LocalDateTime
-import java.util.Date
+import java.util.*
 
 data class MatchResponse(
     @SerializedName("begin_at") val beginAt: Date?,
