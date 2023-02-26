@@ -1,8 +1,13 @@
 package dev.jessto.desafiocstv.ui.matchesList
 
 import android.content.Context
+import android.icu.text.DateFormat.ABBR_WEEKDAY
+import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -10,6 +15,11 @@ import com.bumptech.glide.Glide
 import dev.jessto.desafiocstv.R
 import dev.jessto.desafiocstv.databinding.ItemMatchBinding
 import dev.jessto.desafiocstv.ui.model.MatchDTO
+import java.time.LocalDate
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
+import java.util.*
 
 class MatchesListAdapter(
     private val context: Context,
@@ -23,7 +33,40 @@ class MatchesListAdapter(
             with(binding) {
                 val leagueSeries = if (match.series.isNullOrEmpty()) match.leagueName else match.leagueName + " - " + match.series
 
-                tvItemMatchTime.text = match.scheduledTime.toString() // TODO: Fix date presentation
+                val currentDate = match.scheduledTime!!.toInstant()
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDateTime();
+
+                var datePattern = ""
+                val now = LocalDate.now().atStartOfDay()
+
+                val period = Math.abs(ChronoUnit.DAYS.between(currentDate, now))
+
+                when {
+                    period == 0L -> {
+                        datePattern = "'Hoje,' HH:mm"
+                    }
+                    period in 0..6 -> {
+                        datePattern = "$ABBR_WEEKDAY',' HH:mm"
+                    }
+                    period > 7 -> {
+                        datePattern = "dd.MM HH:mm"
+                    }
+                }
+
+                val formatter = DateTimeFormatter.ofPattern(datePattern)
+                val formatted = currentDate.format(formatter)
+
+
+                if (match.status != "running") {
+                    tvItemMatchTime.text = formatted.toString()
+                    tvItemMatchTime.background = ContextCompat.getDrawable(context, R.drawable.bg_match_time_scheduled)
+                } else {
+                    tvItemMatchTime.text = "AGORA"
+                    tvItemMatchTime.background = ContextCompat.getDrawable(context, R.drawable.bg_match_time_live)
+                }
+
+
                 tvLeagueSeries.text = leagueSeries
 
                 Glide.with(context)

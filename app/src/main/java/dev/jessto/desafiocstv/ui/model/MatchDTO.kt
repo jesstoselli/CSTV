@@ -11,6 +11,7 @@ data class MatchDTO(
     val leagueImg: String?,
     val series: String?,
     val teams: List<TeamDTO>? = emptyList(),
+    val status: String,
     val scheduledTime: Date?
 ) : Parcelable
 
@@ -19,4 +20,3 @@ data class TeamDTO(
     val name: String?,
     val badgeImg: String?
 ): Parcelable
-

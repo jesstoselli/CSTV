@@ -14,7 +14,8 @@ class MatchDTOMapper(private val teamDTOMapper: TeamDTOMapper) : DataMapper<Matc
             leagueImg = it.league.imageUrl,
             series = it.series.name,
             teams = it.opponentTeams.map { team -> teamDTOMapper.toDomain(team) },
-            scheduledTime = it.beginAt
+            scheduledTime = it.beginAt,
+            status = it.status
         )
     }
 }
@@ -27,3 +28,4 @@ class TeamDTOMapper : DataMapper<OpponentTeams, TeamDTO>() {
         )
     }
 }
+

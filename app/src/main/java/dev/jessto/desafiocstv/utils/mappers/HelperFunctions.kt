@@ -1,26 +1,19 @@
 package dev.jessto.desafiocstv.utils.mappers
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.temporal.TemporalAmount
 import java.util.*
 
-private fun buildFromDate(from: Date): Calendar {
-    val c = Calendar.getInstance()
-    c.time = from
-    return c
-}
+@RequiresApi(Build.VERSION_CODES.O)
 fun getYesterday(): Date {
-    val today = Date()
+    val today = LocalDateTime.now()
 
-    val c: Calendar = buildFromDate(today)
-    c.add(Calendar.DATE, -1) // number of days to add
-    return c.time
+    return Date.from(today.minusDays(-1)
+        .atZone(ZoneId.systemDefault())
+        .toInstant())
+
 }
-
-//fun Date.toString(format: String, locale: Locale = Locale.getDefault()): String {
-//    val formatter = SimpleDateFormat(format, locale)
-//    return formatter.format(this)
-//}
-//
-//fun getCurrentDateTime(): Date {
-//    return Calendar.getInstance().time
-//}

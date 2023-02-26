@@ -1,5 +1,7 @@
 package dev.jessto.desafiocstv.data.provider
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import dev.jessto.desafiocstv.data.networkmodel.MatchResponse
 import dev.jessto.desafiocstv.data.repository.MatchesRepositoryImpl
 import dev.jessto.desafiocstv.ui.model.MatchDTO
@@ -7,6 +9,9 @@ import dev.jessto.desafiocstv.ui.model.OpponentDTO
 import dev.jessto.desafiocstv.utils.mappers.MatchDTOMapper
 import dev.jessto.desafiocstv.utils.mappers.OpponentsDTOMapper
 import dev.jessto.desafiocstv.utils.mappers.getYesterday
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.ZoneOffset
 import java.util.*
 
 class MatchesProviderImpl(
@@ -15,9 +20,10 @@ class MatchesProviderImpl(
     private val opponentsDTOMapper: OpponentsDTOMapper
 ) : MatchesProvider {
 
-    override suspend fun getMatchesList(number: Int): List<MatchDTO> {
-
-        val matchesList = matchesRepositoryImpl.getMatchesList(number)
+    //override suspend fun getMatchesList(number: Int): List<MatchDTO> {
+    override suspend fun getMatchesList(): List<MatchDTO> {
+        //val matchesList = matchesRepositoryImpl.getMatchesList(number)
+        val matchesList = matchesRepositoryImpl.getMatchesList()
 
         if (matchesList.isEmpty()) {
             return emptyList()
@@ -25,16 +31,7 @@ class MatchesProviderImpl(
 
         val filteredList = filterList(matchesList)
 
-        val liveMatchesList = filteredList.filter { it.live.opensAt != null }
-
-        val listSortedByLiveAndDate = filteredList.sortedWith(
-            compareBy<MatchResponse> { it.live.opensAt }
-                .thenBy { it.beginAt }
-        )
-
-        val finalList = liveMatchesList + listSortedByLiveAndDate
-
-        return finalList.map { matchResponse -> matchDTOMapper.toDomain(matchResponse) }
+        return filteredList.map { matchResponse -> matchDTOMapper.toDomain(matchResponse) }
     }
 
     override suspend fun getOpponentsList(matchId: String): List<OpponentDTO> {
@@ -46,12 +43,14 @@ class MatchesProviderImpl(
     }
 
     private fun filterList(matchesList: List<MatchResponse>): List<MatchResponse> {
-        val today = getYesterday()
 
-        return matchesList.filterNot {
-            it.opponentTeams.isEmpty() || it.opponentTeams.size < 2 || it
-                .opponentTeams[0].opponent.name.isNullOrEmpty() || it
-                .opponentTeams[1].opponent.name.isNullOrEmpty() || it.beginAt == null || it.beginAt < today
+        return matchesList.filterNot { match ->
+            (match.opponentTeams.isEmpty() || match.opponentTeams.size < 2)
+                    ||
+            (match.opponentTeams.any { it.opponent.name.isNullOrEmpty()})
+                    ||
+            (match.status == "finished" || match.status == "cancelled" )
+                    //it.beginAt!!.toInstant().atZone(ZoneId.systemDefault()).toEpochSecond() >today
         }
     }
 

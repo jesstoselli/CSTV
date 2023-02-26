@@ -1,6 +1,8 @@
 package dev.jessto.desafiocstv.ui.matchesList
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -53,8 +55,7 @@ class MatchesListViewModel(
 
         viewModelScope.launch {
             Log.i(TAG, pageNumber.toString())
-            val listOfMatches = matchesProviderImpl.getMatchesList(pageNumber)
-
+            val listOfMatches = matchesProviderImpl.getMatchesList()
             if (listOfMatches.isEmpty()) {
                 _apiStatus.value = ApiStatus.ERROR
             }

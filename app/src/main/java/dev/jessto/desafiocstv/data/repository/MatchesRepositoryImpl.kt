@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import dev.jessto.desafiocstv.data.CSTVApi
 import dev.jessto.desafiocstv.data.networkmodel.MatchResponse
 import dev.jessto.desafiocstv.data.networkmodel.OpponentsResponse
+import java.time.LocalDate
 
 class MatchesRepositoryImpl : MatchesRepository {
 
@@ -14,8 +15,12 @@ class MatchesRepositoryImpl : MatchesRepository {
     val responseError: LiveData<String>
         get() = _responseError
 
-    override suspend fun getMatchesList(number: Int): List<MatchResponse> {
-        val response = cstvApiService.getMatches(20, number)
+    override suspend fun getMatchesList(): List<MatchResponse> {
+        val localDate = LocalDate.now()
+        val response = cstvApiService.getMatches("begin_at",
+            "$localDate,${localDate.plusYears(1)}",
+            500,
+            "cs-go")
 
         val responseBody = response.body()!!
 

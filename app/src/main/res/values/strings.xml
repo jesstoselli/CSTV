@@ -6,6 +6,7 @@
     <string name="match_details_fragment_label">Match Details Fragment</string>
 
     <string name="vs">VS</string>
+    <string name="agora">AGORA</string>
 
     <!--    Accessibility   -->
     <string name="content_description_team_logo">Team logo</string>
