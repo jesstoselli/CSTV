@@ -3,8 +3,6 @@
 CSTV is a Kotlin Android application built to list CS Go matches, in order to demonstrate core Android Development skills.
 
 It makes use of the [PandaScore Api](https://pandascore.co/).
-
-It's important to mention it takes a bit to load when first installing, but runs smoothly afterwards.
   
 This app demonstrates the following views and techniques using libs:  
   
@@ -23,6 +21,10 @@ It leverages the following components from the Jetpack library:
 * [Navigation](https://developer.android.com/topic/libraries/architecture/navigation/) with the SafeArgs plugin for parameter passing between fragments  
 * [Material Design](https://m3.material.io/)
 
+## Screenshots
+
+Click to expand.<br>
+  
   
 ## Getting Started  
   
