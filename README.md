@@ -24,9 +24,9 @@ It leverages the following components from the Jetpack library:
 ## Screenshots
 
 Click to expand.<br>
-<img src="https://github.com/jesstoselli/cstv-challenge/blob/master/screenshots/splashscreen.png" width="33%"/>
-<img src="https://github.com/jesstoselli/cstv-challenge/blob/master/screenshots/NowVSNext.png" width="33%"/>
-<img src="https://github.com/jesstoselli/cstv-challenge/blob/master/screenshots/MatchDetails.png" width="33%"/>
+<img src="https://github.com/jesstoselli/cstv-challenge/blob/master/screenshots/splashscreen.png" width="25%"/>
+<img src="https://github.com/jesstoselli/cstv-challenge/blob/master/screenshots/NowVSNext.png" width="25%"/>
+<img src="https://github.com/jesstoselli/cstv-challenge/blob/master/screenshots/MatchDetails.png" width="25%"/>
   
   
 ## Getting Started  
