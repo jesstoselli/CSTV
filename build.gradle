@@ -38,6 +38,10 @@ ext {
     retrofit_version = "2.9.0"
     okhttp_version = "4.10.0"
     coroutines_version = "1.6.4"
+    archTestingVersion = '2.1.0'
+    mockk_version = "1.13.4"
+    androidXTestCoreVersion = '1.4.1-alpha03'
+    androidXTestExtKotlinRunnerVersion = '1.1.1'
     espresso_version = "3.5.1"
     junit_version = "4.13.2"
 }

@@ -27,8 +27,6 @@ class MatchesListViewModel(
     val navigateToMatchDetails: LiveData<MatchDTO?>
         get() = _navigateToMatchDetails
 
-    private var pageNumber: Int = 1
-
     init {
         Log.d(TAG, "Loaded properly")
         getMatchesList()
@@ -45,10 +43,7 @@ class MatchesListViewModel(
     fun getMatchesList() {
         _apiStatus.value = ApiStatus.LOADING
 
-        trackPageNumber()
-
         viewModelScope.launch {
-            Log.i(TAG, pageNumber.toString())
             val listOfMatches = matchesProviderImpl.getMatchesList()
             if (listOfMatches.isEmpty()) {
                 _apiStatus.value = ApiStatus.ERROR
@@ -60,14 +55,6 @@ class MatchesListViewModel(
 
             _apiStatus.value = ApiStatus.SUCCESS
         }
-    }
-
-    private fun trackPageNumber() {
-        pageNumber += 1
-    }
-
-    fun resetPageNumber() {
-        pageNumber = 1
     }
 
     companion object {

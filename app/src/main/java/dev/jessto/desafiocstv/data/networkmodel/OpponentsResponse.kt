@@ -15,7 +15,7 @@ data class OpponentsResponse(
 
 data class PlayerResponse(
     @SerializedName("first_name") val firstName: String,
-    @SerializedName("image_url") val playerImg: String,
+    @SerializedName("image_url") val playerImg: String?,
     @SerializedName("last_name") val lastName: String,
     @SerializedName("name") val name: String,
 )
