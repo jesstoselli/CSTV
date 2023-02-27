@@ -39,7 +39,7 @@ class MatchesListFragment : Fragment() {
 
         viewModel.matchesList.observe(viewLifecycleOwner, Observer { matchesList ->
             matchesListAdapter.submitList(matchesList)
-//            binding.rvMatchesList.adapter = matchesListAdapter
+            binding.rvMatchesList.adapter = matchesListAdapter
         })
 
         viewModel.apiStatus.observe(viewLifecycleOwner, Observer { apiStatus ->

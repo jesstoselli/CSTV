@@ -45,6 +45,7 @@ class MatchesListViewModel(
 
         viewModelScope.launch {
             val listOfMatches = matchesProviderImpl.getMatchesList()
+
             if (listOfMatches.isEmpty()) {
                 _apiStatus.value = ApiStatus.ERROR
             }
