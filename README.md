@@ -21,6 +21,10 @@ It leverages the following components from the Jetpack library:
 * [Navigation](https://developer.android.com/topic/libraries/architecture/navigation/) with the SafeArgs plugin for parameter passing between fragments  
 * [Material Design](https://m3.material.io/)
 
+## Screenshots
+
+Click to expand.<br>
+  
   
 ## Getting Started  
   
